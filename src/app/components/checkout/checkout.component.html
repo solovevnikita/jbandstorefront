@@ -1,0 +1,69 @@
+<div class="main-container">
+  <h2>Оформление заказа</h2>
+  <form class="order-info-container" [formGroup]="checkoutForm" (ngSubmit)="goToPayment()">
+    <div class="sender">
+      <div class="date">
+        <p>Когда доставить</p>
+        <div class="inputs">
+          <input class="primary-input" 
+                 placeholder="Дата доставки" 
+                 name="dp" 
+                 formControlName="deliveryDate" 
+                 ngbDatepicker #d="ngbDatepicker"
+                 (click)="d.toggle()"
+                 [ngClass]="{invalid: f.deliveryDate.errors}">
+          <ngb-timepicker formControlName="deliveryTime" [spinners]="false" [ngClass]="{'invalid-time': f.deliveryDate.errors}"></ngb-timepicker>
+        </div>        
+        <p class="errors">{{ f.deliveryDate.errors?.serverError }}</p>
+      </div>
+      <div class="address">
+        <p>Куда доставить</p>
+        <ngx-da-data formControlName="address" [config]="addressConfig" placeholder="Адрес доставки" [ngClass]="{'invalid-address': f.address.errors}"></ngx-da-data>
+        <p class="errors">{{ f.address.errors?.serverError }}</p>
+      </div>
+      <div class="sender-сontact-details">
+        <p>Контактные данные</p>
+        <div class="inputs">
+          <input type="text" class="primary-input" placeholder="Имя" formControlName="customerFullName" [ngClass]="{invalid: f.customerFullName.errors}">
+          <p class="errors">{{ f.customerFullName.errors?.serverError }}</p>
+          <input type="text" class="primary-input" placeholder="Телефон" formControlName="customerPhone" [ngClass]="{invalid: f.customerPhone.errors}" prefix="+7 " mask="(000) 000-00-00">
+          <p class="errors">{{ f.customerPhone.errors?.serverError }}</p>
+        </div>
+      </div>
+      <div class="sms-notice">
+        <input class="primary-checkbox" id="primary-checkbox-1" type="checkbox" formControlName="isDeliveryNotifications">
+        <label for="primary-checkbox-1">Хочу получить sms-уведомление о доставке</label>
+      </div>
+    </div>
+    <div class="recipient">
+      <p>Кому доставить</p>
+      <div class="inputs recipient-contact-details">
+        <input type="text" class="primary-input" placeholder="Имя" formControlName="recipientFullName" [ngClass]="{invalid: f.recipientFullName.errors}">
+        <p class="errors">{{ f.recipientFullName.errors?.serverError }}</p>
+        <input type="text" class="primary-input" placeholder="Телефон" formControlName="recipientPhone" [ngClass]="{invalid: f.recipientPhone.errors}" prefix="+7 " mask="(000) 000-00-00">
+        <p class="errors">{{ f.recipientPhone.errors?.serverError }}</p>
+      </div>
+      <div class="other-details">
+        <input class="primary-checkbox" id="primary-checkbox-2" type="checkbox" formControlName="isRecipient" (change)="toggleDisableRecipient()">
+        <label for="primary-checkbox-2">Я получатель</label>
+      </div>
+      <div class="other-details">
+        <input class="primary-checkbox" id="primary-checkbox-3" type="checkbox" formControlName="isCallAllowed">
+        <label for="primary-checkbox-3">Можем ли мы позвонить получателю для уточнения времени и места доставки?</label>
+      </div>
+    </div>
+    <div class="comment">
+      <p>Дополнительная информация</p>
+      <textarea class="primary-textarea" placeholder="Комментарий" formControlName="comment"></textarea>
+    </div>
+    <div class="block-btn">
+      <button class="default-btn" (click)="goToBasket()">Назад к корзине</button>
+      <button class="primary-btn" type="submit">Продолжить</button>
+    </div>   
+  </form>  
+  <!-- <div class="order-send">
+    <h2>Спасибо за заказ!</h2>
+    <p>Спасибо за Ваш заказ. Статус своего заказа Вы можете узнать в личном кабинете.</p>
+    <p class="order-number">Номер Вашего заказа <strong>№123</strong>.<p>
+  </div> -->
+</div>

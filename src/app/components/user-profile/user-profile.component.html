@@ -1,0 +1,92 @@
+<div class="main-container">
+  <div class="user-profile-container">
+    <h2>Личный кабинет</h2>
+    <h5>{{fullName}}</h5>
+    <div class="user-profile-wrapper">
+      <ngb-tabset type="pills">
+        <ngb-tab title="Мои заказы">
+          <ng-template ngbTabContent>
+            <div class="no-items" *ngIf="!orderItems?.length">
+              <p>У вас пока нет завершенных заказов</p>
+              <button class="primary-btn" (click)="goToStore()">Продолжить покупки</button>
+            </div>
+            <div class="my-orders-container" *ngIf="orderItems?.length">
+              <div class="my-orders-header">
+                <div>№</div>
+                <div>Фото</div>
+                <div>Описание</div>
+                <div>Цена</div>
+                <div>Сумма</div>
+                <div>Дата доставки</div>
+                <div>Статус</div>
+                <div>Оценка</div>
+              </div>
+              <div class="my-orders-item" *ngFor="let item of orderItems, index as i">
+                <div class="index">{{ i + 1 }}</div>
+                <div class="item-img">
+                  <img src="{{ item.photo.fileName640 }}">
+                </div>
+                <div class="item-description">{{ item.name }}</div>
+                <div class="item-price"><span *ngIf="isMobile">Цена</span>{{ item.price | number:'1.' | numberFormat  }} руб.</div>
+                <div class="item-sum"><span *ngIf="isMobile">Сумма</span>{{ item.totalSum | number:'1.' | numberFormat  }} руб.</div>
+                <div class="delivery-date"><span *ngIf="isMobile">Дата</span> {{ item.deliveryDate | date }}</div>
+                <div class="status"><span *ngIf="isMobile">Статус</span><div [innerHTML]="item.status"></div></div>
+                <div class="rating" *ngIf="item.reviewRating">      
+                  <ngb-rating [(rate)]="item.reviewRating" max="5" [readonly]="true">
+                    <ng-template let-fill="fill" let-index="index">
+                      <div class="rating-item" [class.filled]="fill === 100"></div>
+                    </ng-template>
+                  </ngb-rating>
+                  <p *ngIf="item.reviewRating == 1" class="item.review-rating-text">Очень плохо</p>
+                  <p *ngIf="item.reviewRating == 2" class="item.review-rating-text">Плохо</p>
+                  <p *ngIf="item.reviewRating == 3" class="item.review-rating-text">Хорошо</p>
+                  <p *ngIf="item.reviewRating == 4" class="item.review-rating-text">Очень хорошо</p>
+                  <p *ngIf="item.reviewRating == 5" class="item.review-rating-text">Отлично</p>
+                </div>
+                <div class="rating" *ngIf="!item.reviewRating && item.status.includes('Завершен')">
+                  <button class="primary-btn" (click)="sendReview(item.orderDetailId)">Оценить</button>
+                </div>
+                <div class="rating" *ngIf="!item.reviewRating && !item.status.includes('Завершен')">
+                  Оценить можно только выполненные заказы
+                </div>
+              </div>          
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Настройки">
+          <ng-template ngbTabContent>
+            <form class="settings" [formGroup]="userInfoForm" (ngSubmit)="onSubmit()"> 
+              <input id="fullName"
+                type="text" 
+                class="primary-input" 
+                placeholder="Имя" 
+                formControlName="fullName"
+                [ngClass]="{invalid: f.fullName.errors}">
+                <p class="errors">{{ f.fullName.errors?.serverError }}</p>
+              <input 
+                type="mail" id="email"
+                class="primary-input"
+                placeholder="Email"
+                formControlName="email"
+                [ngClass]="{invalid: f.email.errors}">
+                <p class="errors">{{ f.email.errors?.serverError }}</p>
+              <input 
+                type="text" id="phone"
+                class="primary-input"
+                placeholder="Номер телефона"
+                formControlName="phone"
+                [ngClass]="{invalid: f.phone.errors}"
+                prefix="+7 " mask="(000) 000-00-00">
+                <p class="errors">{{ f.phone.errors?.serverError }}</p>
+              <button class="primary-btn" type="submit">Сохранить</button>
+              <button class="default-btn" type="button" (click)="logoff()">Выход</button>
+            </form>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>      
+      <div class="admin-btn" *ngIf="role !== 'customer'">
+        <button (click)="goToAdmin()">Админ. панель</button>
+      </div>
+    </div>
+  </div>
+</div>

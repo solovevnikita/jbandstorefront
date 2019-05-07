@@ -1,0 +1,106 @@
+<div class="main-container">
+  <div class="item-details-container">
+    <div class="gallery">
+      <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+    </div>
+    <div class="item-details">
+      <h3>{{ flower?.name }} ({{ flower?.pieces }} шт.)</h3>
+      <span>{{ flower?.outsideId }}</span>
+      <p class="item-about">{{ flower?.note }}</p>
+      <p class="price">{{ flower?.price | number:'2.' | numberFormat }} руб.</p>
+      <div class="btn-block">
+        <button class="primary-btn" (click)="addToBasket()">Купить</button>
+        <button class="default-btn" (click)="addToFavourite()" *ngIf="!_inFavorites">В избранное</button>
+        <button class="default-btn" (click)="removeItem(flower.productId)" *ngIf="_inFavorites">Убрать из избранного</button>
+      </div>
+      <div class="reviews">
+        <h3>Отзывы</h3>
+        <div class="rating">
+          <div>
+            <ngb-rating [(rate)]="selected1" max="5" readonly="true">
+              <ng-template let-fill="fill" let-index="index">
+                <div class="rating-item" [class.filled]="fill === 100"></div>
+              </ng-template>
+            </ngb-rating>
+            ({{ flower?.ratingCount1 }})
+          </div>
+          <div>
+            <ngb-rating [(rate)]="selected2" max="5" readonly="true">
+              <ng-template let-fill="fill" let-index="index">
+                <div class="rating-item" [class.filled]="fill === 100"></div>
+              </ng-template>
+            </ngb-rating>
+            ({{ flower?.ratingCount2 }})
+          </div>
+          <div>
+            <ngb-rating [(rate)]="selected3" max="5" readonly="true">
+              <ng-template let-fill="fill" let-index="index">
+                <div class="rating-item" [class.filled]="fill === 100"></div>
+              </ng-template>
+            </ngb-rating>
+            ({{ flower?.ratingCount3 }})
+          </div>
+          <div>
+            <ngb-rating [(rate)]="selected4" max="5" readonly="true">
+              <ng-template let-fill="fill" let-index="index">
+                <div class="rating-item" [class.filled]="fill === 100"></div>
+              </ng-template>
+            </ngb-rating>
+            ({{ flower?.ratingCount4 }})
+          </div>
+          <div>
+            <ngb-rating [(rate)]="selected5" max="5" readonly="true">
+              <ng-template let-fill="fill" let-index="index">
+                <div class="rating-item" [class.filled]="fill === 100"></div>
+              </ng-template>
+            </ngb-rating>
+            ({{ flower?.ratingCount5 }})
+          </div>
+        </div>
+        <div class="review-item" *ngFor="let item of reviews">
+          <div class="review-info">
+            <div class="avatar"><p>Е</p></div>
+            <div>
+              <p class="name">{{ item.userFullName }}</p>
+              <p class="date">{{ item.reviewDate | date:'LLLL, yyyy' | titlecase }}</p>
+              <div class="rating">
+                <ngb-rating [(rate)]="item.rating" max="5" readonly="true">
+                  <ng-template let-fill="fill" let-index="index">
+                    <div class="rating-item" [class.filled]="fill === 100"></div>
+                  </ng-template>
+                </ngb-rating>
+              </div>
+            </div>
+          </div>
+          <div class="review-text">
+            <p>{{ item.reviewText }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <h2>Похожие товары</h2>
+  <div class="similar-items">
+    <div class="item" *ngFor="let item of similarItems">
+      <div class="item-markers">
+        <div class="item-marker bestseller" *ngIf="item.isHitMark">
+          хит
+        </div>
+        <div class="item-marker sale" *ngIf="item.isDiscount">
+          скидка
+        </div>
+      </div>
+      <div class="item-img" (click)="goToItemDetails(item.productId)" [style.backgroundImage]="'url('+ item.photos[0].fileName640 +')'"></div>
+      <div class="item-text">
+        <p class="item-name">{{ item.name }} ({{ item.pieces }} шт.)</p>
+        <span class="item-article">{{ item.article }}</span>
+      </div>
+      <div class="item-text">
+        <p class="item-price">{{ item.price | number:'2.' | numberFormat }} руб.</p>
+      </div>
+      <div class="item-basket">
+        <button class="primary-btn" (click)="addToBasket(item.productId)">В корзину</button>
+      </div>
+    </div>
+  </div>
+</div>

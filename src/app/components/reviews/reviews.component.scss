@@ -1,0 +1,38 @@
+$main-color: rgb(219, 80, 66);
+.reviews-container { 
+  margin-top: 100px;
+  padding: 80px 0;
+  width: 100%;
+  background: rgba(211, 211, 211, .16);
+  text-align: center;
+  h2 { margin-bottom: 60px; }
+  .review-text { width: 60%; }
+  .review-author { 
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    img {
+      width: 51px;
+      height: 51px;
+      border-radius: 50%;
+    }
+    > div { margin-left: 20px; }
+    p {
+      letter-spacing: -0.46px;
+      color: #2c2e3f;
+      font-size: 16px;
+    }
+    span {
+      color: rgba(44, 46, 63, .33);
+      font-size: 14px;
+      letter-spacing: -0.35px;
+    }
+    .social {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      margin-left: 10px;
+    }
+  }
+}

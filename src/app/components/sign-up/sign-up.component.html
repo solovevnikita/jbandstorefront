@@ -1,0 +1,88 @@
+<div class="modal-container">
+  <div class="modal-close-btn"> 
+    <button type="button" (click)="close()" *ngIf="!hideSignUp">
+      <div class="svg-controls"><svg-icon [applyCss]="true" src="assets/img/close.svg"></svg-icon></div>
+    </button>
+  </div>
+  <div class="modal-title">
+    <h3>Регистрация</h3>
+    <p>Регистрация позволяет удобно отслеживать доставку</p>
+  </div>
+  <form class="modal-inputs" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="modal-input">
+      <input 
+        class="primary-input" 
+        type="text" 
+        placeholder="Имя" 
+        formControlName="firstName"
+        [ngClass]="{invalid: f.firstName.errors}">
+        <p class="errors">{{ f.firstName.errors?.serverError }}</p>
+    </div>
+    <div class="modal-input">
+      <input 
+        class="primary-input" 
+        type="text" 
+        placeholder="Фамилия" 
+        formControlName="lastName"
+        [ngClass]="{invalid: f.lastName.errors}">
+        <p class="errors">{{ f.lastName.errors?.serverError }}</p>
+    </div>
+    <div class="modal-input">
+      <input 
+        class="primary-input" 
+        type="text" 
+        placeholder="Номер телефона" 
+        formControlName="phone"
+        [ngClass]="{invalid: f.phone.errors}"
+        prefix="+7 " mask="(000) 000-00-00">
+        <p class="errors">{{ f.phone.errors?.serverError }}</p>
+    </div>
+    <div class="modal-input">
+      <input 
+        class="primary-input"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+        [ngClass]="{invalid: f.email.errors}">
+        <p class="errors">{{ f.email.errors?.serverError }}</p>
+    </div>
+    <div class="modal-input">
+      <input 
+        class="primary-input" 
+        type="password"
+        placeholder="Пароль"
+        formControlName="password"
+        [ngClass]="{invalid: f.password.errors}">
+        <p class="errors">{{ f.password.errors?.serverError }}</p>
+    </div>
+    <div class="modal-input">
+      <input 
+        class="primary-input"
+        type="password"
+        placeholder="Повторите пароль"
+        formControlName="passwordConfirm"
+        [ngClass]="{invalid: f.passwordConfirm.errors}">
+        <p class="errors">{{ f.passwordConfirm.errors?.serverError }}</p>
+    </div>
+    <div class="sign-up-btn">
+      <div class="privacy-notice">
+        <input class="primary-checkbox" id="privacy-notice" type="checkbox" formControlName="privacyNotice">
+        <label for="privacy-notice" [ngClass]="{errors: f.privacyNotice.errors}">
+          Я соглашаюсь с <a href="/oferta" target="_blank" [ngClass]="{errors: f.privacyNotice.errors}"> условиями использования сайта</a>
+        </label>
+      </div>
+      <button type="submit" class="primary-btn"><p>Зарегистрироваться</p></button>
+      <div>
+        <div><p>Уже есть аккаунт? <a (click)="openSignIn()">Войдите</a></p></div>
+      </div>
+    </div>
+  </form>
+  <div class="modal-social">
+    <p>Вход через социальные сети</p>
+    <div>
+      <img src="assets/img/facebook.png" alt="facebook" (click)="signInSocial('facebook')">
+      <img src="assets/img/vk.png" alt="vk" (click)="signInSocial('vkontakte')">
+      <img src="assets/img/google.png" alt="google" (click)="signInSocial('google')">
+    </div>
+  </div>
+</div>

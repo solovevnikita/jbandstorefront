@@ -1,0 +1,28 @@
+[
+  { 
+    "id": 1, 
+    "name": "Лизантусы", 
+    "numOfFlowers": 11, 
+    "article": 12345, 
+    "price": 4200, 
+    "img": "item-1.png", 
+    "marker": { "bestseller": true, "sale": false }, 
+    "count": 1, 
+    "bouquet-type": "mono",
+    "color": "cupid",
+    "occasions": "birthday"
+  },
+  { 
+    "id": 2, 
+    "name": "Ирисы", 
+    "numOfFlowers": 55, 
+    "article": 12345, 
+    "price": 4200, 
+    "img": "item-2.png", 
+    "marker": { "bestseller": false, "sale": true }, 
+    "count": 1, 
+    "bouquet-type": "mono",
+    "color":  "pinkSalmon",
+    "occasions": "birthday"
+  }
+]

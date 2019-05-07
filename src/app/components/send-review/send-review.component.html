@@ -1,0 +1,31 @@
+<div class="main-container">
+  <h2>Написать отзыв</h2>
+  <form class="send-review-container" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <div class="rating">
+      <ngb-rating max="5" formControlName="rating">
+        <ng-template let-fill="fill" let-index="index">
+          <div class="rating-item" [class.filled]="fill === 100"></div>
+        </ng-template>
+      </ngb-rating>
+      <p *ngIf="!f.rating.value">Нажмите, чтобы оценить</p>
+      <p *ngIf="f.rating.value == 1" class="selected-rating-text">Очень плохо</p>
+      <p *ngIf="f.rating.value == 2" class="selected-rating-text">Плохо</p>
+      <p *ngIf="f.rating.value == 3" class="selected-rating-text">Хорошо</p>
+      <p *ngIf="f.rating.value == 4" class="selected-rating-text">Очень хорошо</p>
+      <p *ngIf="f.rating.value == 5" class="selected-rating-text">Отлично</p>
+    </div>
+    <p class="errors">{{ f.rating.errors?.serverError }}</p>
+    <label for="review">Ваш отзыв</label>
+    <div class="review-text">
+      <textarea 
+        name="review" 
+        id="review" 
+        placeholder="Опишите ваше впечатление о букете и доставке" 
+        class="primary-textarea" 
+        formControlName="reviewText"
+        [ngClass]="{'invalid': f.reviewText.errors}"></textarea>
+      <p class="errors">{{ f.reviewText.errors?.serverError }}</p>
+    </div>
+    <button class="primary-btn" type="submit">Отправить</button> 
+  </form>
+</div>

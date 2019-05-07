@@ -1,0 +1,138 @@
+<div class="catalog-container">
+  <div class="block-title">
+    <h2>Каталог</h2>
+  </div>
+  <div class="category">
+    <div class="category-name" *ngFor="let item of itemCategory">
+        <input class="category-checkbox" type="radio" name="radio" (change)="getItemsByCategory(item.productAttributeId)" id="{{item.productAttributeId}}">
+        <label for="{{item.productAttributeId}}">{{ item.name }}</label>
+    </div>
+  </div>
+  <div class="filter">
+    <div class="filter-toggle-btn">
+      <button type="button" class="toggle-collapse-btn" (click)="isCollapsedFilters = !isCollapsedFilters"
+              [attr.aria-expanded]="isCollapsedFilters" aria-controls="filters">
+        <div class="svg-controls"><svg-icon [applyCss]="true" src="assets/img/filters.svg"></svg-icon></div>
+        <p>Фильтры</p>
+      </button>
+    </div>
+    <div class="collapse-container" id="filters" [ngbCollapse]="isCollapsedFilters">
+      <div class="collapse-item">
+        <button type="button" class="toggle-collapse-btn" (click)="isCollapsedColors = !isCollapsedColors"
+                [attr.aria-expanded]="!isCollapsedColors" aria-controls="colors">
+          <span>Цветовая гамма</span>
+          <div class="svg-controls" *ngIf="!isCollapsedColors"><svg-icon [applyCss]="true" src="assets/img/minus.svg"></svg-icon></div>
+          <div class="svg-controls" *ngIf="isCollapsedColors"><svg-icon [applyCss]="true" src="assets/img/plus.svg"></svg-icon></div>
+        </button>
+        <div id="colors" [ngbCollapse]="isCollapsedColors">
+          <div class="color-selection">
+            <div *ngFor="let color of colors, index as i">
+              <input class="color" id="color-{{i}}" type="checkbox" (click)="filterItems(color.productAttributeId)" #checkboxes>
+              <label for="color-{{i}}" [style.background]="color.color"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collapse-item">
+        <button type="button" class="toggle-collapse-btn" (click)="isCollapsedBouquets = !isCollapsedBouquets"
+                [attr.aria-expanded]="!isCollapsedBouquets" aria-controls="bouquets">
+          <span>Вид букета</span>
+          <div class="svg-controls" *ngIf="!isCollapsedBouquets"><svg-icon [applyCss]="true" src="assets/img/minus.svg"></svg-icon></div>
+          <div class="svg-controls" *ngIf="isCollapsedBouquets"><svg-icon [applyCss]="true" src="assets/img/plus.svg"></svg-icon></div>
+        </button>
+        <div id="bouquets" [ngbCollapse]="isCollapsedBouquets">
+          <div class="bouquet-type">
+            <div *ngFor="let bouquet of bouquetType, index as i">
+                <input class="primary-checkbox" id="bouquet-{{i}}" type="checkbox" (click)="filterItems(bouquet.productAttributeId)" #checkboxes>
+                <label for="bouquet-{{i}}">{{ bouquet.name }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collapse-item">
+        <button type="button" class="toggle-collapse-btn" (click)="isCollapsedFlowers = !isCollapsedFlowers"
+                [attr.aria-expanded]="!isCollapsedFlowers" aria-controls="flowers">
+          <span>Цветы в букете</span>
+          <div class="svg-controls" *ngIf="!isCollapsedFlowers"><svg-icon [applyCss]="true" src="assets/img/minus.svg"></svg-icon></div>
+          <div class="svg-controls" *ngIf="isCollapsedFlowers"><svg-icon [applyCss]="true" src="assets/img/plus.svg"></svg-icon></div>
+        </button>
+        <div id="flowers" [ngbCollapse]="isCollapsedFlowers">
+          <div class="flowers-type">
+            <div *ngFor="let flower of flowersType, index as i">
+                <input class="primary-checkbox" id="flower-{{i}}" type="checkbox" (click)="filterItems(flower.productAttributeId)" #checkboxes>
+                <label for="flower-{{i}}">{{ flower.name }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collapse-item">
+        <button type="button" class="toggle-collapse-btn" (click)="isCollapsedOccasions = !isCollapsedOccasions"
+                [attr.aria-expanded]="!isCollapsedOccasions" aria-controls="occasions">
+          <span>Поводы</span>
+          <div class="svg-controls" *ngIf="isCollapsedOccasions"><svg-icon [applyCss]="true" src="assets/img/minus.svg"></svg-icon></div>
+          <div class="svg-controls" *ngIf="!isCollapsedOccasions"><svg-icon [applyCss]="true" src="assets/img/plus.svg"></svg-icon></div>
+        </button>
+        <div id="occasions" [ngbCollapse]="!isCollapsedOccasions">
+          <div class="occasions">            
+            <div *ngFor="let occasion of occasions, index as i">
+                <input class="primary-checkbox" id="occasion-{{i}}" type="checkbox" (click)="filterItems(occasion.productAttributeId)" #checkboxes>
+                <label for="occasion-{{i}}">{{ occasion.name }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collapse-item">
+        <button type="button" class="toggle-collapse-btn" (click)="isCollapsedPriceRange = !isCollapsedPriceRange"
+                [attr.aria-expanded]="!isCollapsedPriceRange" aria-controls="price-range">
+          <span>Цена</span>
+          <div class="svg-controls" *ngIf="!isCollapsedPriceRange"><svg-icon [applyCss]="true" src="assets/img/minus.svg"></svg-icon></div>
+          <div class="svg-controls" *ngIf="isCollapsedPriceRange"><svg-icon [applyCss]="true" src="assets/img/plus.svg"></svg-icon></div>
+        </button>
+        <div id="price-range" [ngbCollapse]="isCollapsedPriceRange">
+          <div class="slider">
+            <ng5-slider 
+              [(value)]="minValue"
+              [(highValue)]="maxValue" 
+              [options]="options"
+              (userChangeEnd)="getItemsByPrice()"></ng5-slider>
+          </div>
+        </div>
+      </div>
+      <div class="sale">
+        <input class="primary-checkbox" id="primary-checkbox-20" type="checkbox" [(ngModel)]="withDiscount" (change)="getItemsWithDiscount()" #checkboxes>
+        <label for="primary-checkbox-20">Букеты со скидкой</label>
+      </div>
+      <div class="remove-filters" (click)="removeFilters()">
+        <p>Сбросить фильтры</p>
+        <div class="svg-controls"><svg-icon [applyCss]="true" src="assets/img/cross.svg"></svg-icon></div>
+      </div>
+    </div>
+  </div>
+  <div class="catalog-items">
+    <div class="item" *ngFor="let item of flowers">
+      <div class="item-markers">
+        <div class="item-marker bestseller" *ngIf="item.isHitMark">
+          хит
+        </div>
+        <div class="item-marker sale" *ngIf="item.isDiscount">
+          скидка
+        </div>
+      </div>
+      <div class="item-img" (click)="goToItemDetails(item.productId)" [style.backgroundImage]="'url('+ item.photos[0].fileName640 +')'"></div>
+      <div class="item-text">
+        <p class="item-name">{{ item.name }} ({{ item.pieces }} шт.)</p>
+        <span class="item-article">{{ item.article }}</span>
+      </div>
+      <div class="item-text">
+        <p class="item-price">{{ item.price | number:'.' | numberFormat }} руб.</p>
+      </div>
+      <div class="item-basket">
+        <button class="primary-btn" (click)="addToBasket(item.productId)">В корзину</button>
+      </div>
+    </div>
+    <div class="show-more" *ngIf="!(_flowers?.length < 9) && flowers?.length > 8" (click)="showMore()">
+      <button><p>Показать еще</p></button>
+    </div>
+    <div *ngIf="!flowers?.length"><p>По вашему запросу ничего не найдено.</p></div>
+  </div>
+</div>

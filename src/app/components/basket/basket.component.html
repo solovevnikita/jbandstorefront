@@ -1,0 +1,56 @@
+<div class="main-container">
+  <h2>Корзина</h2>
+  <div class="basket-container" *ngIf="items?.details.length">
+    <div class="basket-items">
+      <div class="basket-items-header">
+        <p class="name">Наименование</p>
+        <p class="price">Цена</p>
+        <p class="amount">Количество</p>
+        <p class="sum">Сумма</p>
+      </div>
+      <div class="basket-item" *ngFor="let item of items.details; let index = index">
+        <div class="item-img" (click)="goToItemDetails(item.productId)"><img src="{{ item.photo.fileName130 }}" alt="item-1"></div>
+        <div class="item-text">
+          <p class="item-name">{{ item.name }}</p>
+          <span class="item-number">{{ item.numberOfItem }}</span>
+        </div>
+        <div class="item-price">
+          <span *ngIf="isMobile">Цена</span>
+          <p>{{ item.price | number:'1.' | numberFormat }} руб.</p>
+        </div>
+        <div class="item-count">
+          <button (click)="reduceCount(item)">&#65293;</button>
+          <input type="text" value="{{ item.qty }}">
+          <button (click)="increaseCount(item)">&#65291;</button>
+        </div>
+        <div class="item-sum">
+          <span *ngIf="isMobile">Сумма</span>
+          <p>{{ sum(item) | number:'1.' | numberFormat }} руб.</p>
+        </div>
+        <div class="item-remove">
+          <div class="svg-controls" (click)="removeItem(index, item.productId)"><svg-icon [applyCss]="true" src="assets/img/close.svg"></svg-icon></div>
+        </div>
+      </div>
+    </div>
+    <div class="checkout-wrapper">
+      <div class="remove-all-items">
+        <button (click)="removeAllItems()">Очистить корзину</button>
+      </div>
+      <div class="checkout">
+        <div class="delivery-sum">
+          <p>Доставка</p>        
+          <p>Итого</p>
+        </div>
+        <div class="order-sum">
+          <p>{{ items?.deliverySum | number:'1.' | numberFormat }} руб.</p>
+          <p>{{ totalSum() | number:'1.' | numberFormat }} руб.</p>
+        </div>
+        <button class="primary-btn" routerLink="/checkout">Оформить заказ</button>
+      </div>
+    </div>
+  </div>
+  <div class="no-items" *ngIf="!items?.details.length">
+    <p>В настоящий момент в Вашей корзине нет товаров</p>
+    <button class="primary-btn" (click)="goToStore()">Продолжить покупки</button>
+  </div>
+</div>

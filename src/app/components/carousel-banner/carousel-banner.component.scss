@@ -1,0 +1,36 @@
+.carousel-item-container {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.carousel-caption {
+  bottom: 90px;
+  right: auto;
+  margin: 0;
+  h1 { 
+    text-align: left;
+    font-size: 68px;
+    max-width: 890px;      
+    font-family: 'Calibri', sans-serif;    
+    letter-spacing: -1.1px;
+  }
+}
+@media (max-width: 1024px) {  
+  .carousel-caption {    
+    max-width: 700px;
+    left: 100px;
+    h1 { font-size: 56px; }
+  }
+}
+@media (max-width: 768px) {  
+  .carousel-caption {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 40px;
+    bottom: auto;
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "colors": [
+    { "name": "cornflowerBlue", "value": "#6195ed" },
+    { "name": "bittersweet", "value": "#fe7865" },
+    { "name": "morningGlory", "value": "#9ce0d8" },
+    { "name": "hitPink", "value": "#ffb585" },
+    { "name": "fringyFlower", "value": "#b0e2bb" },
+    { "name": "bilobaFlower", "value": "#bfadef" },
+    { "name": "pinkSalmon", "value": "#ff8e9c" },
+    { "name": "cupid", "value": "#fcbdda" }
+  ],
+  "bouquetType": [
+    { "name": "mono", "value": "Монобукет" },
+    { "name": "author", "value": "Авторские" },
+    { "name": "classic", "value": "Классические" },
+    { "name": "wedding", "value": "Свадебные" },
+    { "name": "fruit", "value": "Из фруктов" },
+    { "name": "dried", "value": "Сухоцветы" },
+    { "name": "men", "value": "Для мужчин" },
+    { "name": "newYear", "value": "Новогодние" }
+  ],
+  "flowersType": [
+    { "name": "roses", "value": "Розы" },
+    { "name": "irises", "value": "Ирисы" },
+    { "name": "lisianthus", "value": "Лизиантусы" },
+    { "name": "gladiosis", "value": "Гладиоусы" },
+    { "name": "asters", "value": "Астры" },
+    { "name": "peonies", "value": "Пионы" },
+    { "name": "carnations", "value": "Гвоздики" },
+    { "name": "violets", "value": "Фиалки" }
+  ],
+  "occasions": [
+    { "name": "birthday", "value": "День рождения" },
+    { "name": "anniversary", "value": "Юбилей" },
+    { "name": "business", "value": "Бизнес букет" },
+    { "name": "forBeloved", "value": "Цветы для любимой" },
+    { "name": "birthOfChild", "value": "Рождение ребенка" },
+    { "name": "wedding", "value": "На свадьбу для родителей и гостей" },
+    { "name": "decoration", "value": "Оформление интерьера" }
+  ]
+}

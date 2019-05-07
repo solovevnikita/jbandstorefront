@@ -1,0 +1,177 @@
+$main-color: rgb(219, 80, 66);
+.user-profile-container {
+  .my-orders-header, .my-orders-item {
+    display: grid;
+    grid-template-columns: 50px 95px 180px 1fr 1fr 1fr 1fr 176px;
+  }
+  .my-orders-header {
+    div {
+      font-size: 14px;
+      padding: 20px 10px;
+      color: #9b9b9b;
+      border-right: 1px solid #d8d8d8;
+      &:last-child { border-right: none; }
+    }
+  }
+  .my-orders-item {
+    font-size: 14px;
+    border-top: 1px solid #d8d8d8;
+    & > div {
+      padding: 20px 10px;
+      height: 100%;
+      border-right: 1px solid #d8d8d8;
+      display: flex;
+      align-items: center;
+      &.item-img { padding: 20px 7px; }
+    }
+    img {
+      padding: 0;
+      width: 80px;
+    }
+    .rating {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10px;
+      border-right: none; 
+      margin-bottom: 0;
+      p {
+        color: #9b9b9b;
+        font-size: 12px;
+        &.review-rating-text { 
+          color: $main-color;
+          font-weight: 700;
+        }
+      }
+      button {
+        width: 100px;
+        height: 35px;
+      }
+    }
+  }
+  .settings {
+    max-width: 280px;
+    input { 
+      margin-bottom: 20px;
+      &.invalid { margin-bottom: 0; }
+    }
+    .errors { margin-bottom: 20px; }
+    .default-btn { margin-top: 20px; }
+  }
+  .user-profile-wrapper {
+    position: relative;
+  }
+  .admin-btn {
+    position: absolute;
+    margin-left: 317px;
+    top: 0;
+    button {
+      border-radius: 5px;
+      font-size: 14px;
+      padding: 8px 20px;
+      border: 1px solid #4a4a4a;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #4a4a4a;
+      background: transparent;
+      &:hover {
+        background: #4a4a4a;
+        color: #ffffff;
+      }
+    }
+  }
+}
+@media (max-width: 1060px) {
+  .main-container {
+    padding: 0 30px;
+  }
+}
+@media (max-width: 930px) {
+  .main-container {
+    .my-orders-header, .my-orders-item {
+      grid-template-columns: 50px 95px 1fr 60px 60px 80px 95px 155px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .main-container {
+    .my-orders-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; 
+    }
+    .my-orders-header { display: none; }
+    .my-orders-item {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      grid-template-areas: 'item-img item-img item-description' 
+                           'item-img item-img item-price' 
+                           'item-img item-img rating' 
+                           'item-sum delivery-date status';
+      margin-bottom: 40px;
+      border: none;
+      border-bottom: 1px solid #d8d8d8;
+      font-size: 18px;
+      .index { display: none; }
+      & > div { 
+        border-right: none;
+        align-items: baseline;
+      }
+      .item-description { 
+        grid-area: item-description;
+        font-size: 20px;
+      }
+      .item-img { 
+        grid-area: item-img;
+        img { width: 100%; }
+      }
+      .item-price { 
+        grid-area: item-price;
+        display: flex;
+        flex-direction: column;
+        span {   
+          color: #9b9b9b;
+          font-size: 16px;
+        }
+      }
+      .rating { grid-area: rating; }
+      .item-sum { 
+        grid-area: item-sum;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #d8d8d8;
+        span {   
+          color: #9b9b9b;
+          font-size: 16px;
+        }
+      }
+      .delivery-date { 
+        grid-area: delivery-date;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #d8d8d8;
+        span {   
+          color: #9b9b9b;
+          font-size: 16px;
+        }
+      }
+      .status { 
+        grid-area: status;
+        display: flex;
+        flex-direction: column;
+        span {   
+          color: #9b9b9b;
+          font-size: 16px;
+        }
+      }
+    }
+    .settings {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+  }
+  ngb-tabset .nav-item:last-child { 
+    margin-left: 0;
+  }
+}

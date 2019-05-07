@@ -1,0 +1,41 @@
+image: node:latest
+cache:
+  key: "$CI_BUILD_REF_NAME"
+  untracked: true
+  paths:
+    - node_modules/
+    - dist/
+
+stages:
+  - build
+  - deploy
+  - cleanup
+
+runBuild:
+  before_script:
+   - npm install -g @angular/cli@latest --unsafe-perm
+   - npm install
+  stage: build
+  script:
+    - ng build --progress false --prod --base-href /
+
+
+runDeploy:
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq lftp
+  stage: deploy
+  artifacts:
+    name: "$CI_BUILD_NAME/$CI_BUILD_REF_NAME"
+    paths:
+      - dist/
+    expire_in: 2d
+  script:
+    - lftp -c "set ftp:ssl-allow no; open -u $FTP_USER,$FTP_PASS ftp://jbandflowers.ru; mirror -Rnev ./dist/jband-flowers-store/ ./dist --parallel=10"
+
+
+cleanup:
+  stage: cleanup
+  script:
+  - rm -rf ./dist
+  - rm -rf ./node_modules
+  when: manual

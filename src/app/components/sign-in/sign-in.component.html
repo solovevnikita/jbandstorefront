@@ -1,0 +1,46 @@
+<div class="modal-container">
+  <div class="modal-close-btn"> 
+    <button type="button" (click)="close()" *ngIf="!hideSignIn">
+      <div class="svg-controls"><svg-icon [applyCss]="true" src="assets/img/close.svg"></svg-icon></div>
+    </button>
+  </div>
+  <div class="modal-title">
+    <h3>Вход</h3>
+    <p class="signin-error-message" *ngIf="error">{{error}}</p>
+    <p *ngIf="!error">Введите номер телефона или email</p>
+  </div>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="modal-inputs">
+    <div class="modal-input">
+      <input 
+        class="primary-input" 
+        type="text" 
+        placeholder="Email или номер телефона" 
+        formControlName="username"
+        [ngClass]="{invalid: f.username.errors}">
+        <p class="errors">{{ f.username.errors?.serverError }}</p>
+    </div>
+    <div class="modal-input">
+      <input 
+          class="primary-input" 
+          type="password" 
+          placeholder="Пароль" 
+          formControlName="password"
+          [ngClass]="{invalid: f.password.errors}">
+          <p class="errors">{{ f.password.errors?.serverError }}</p>
+    </div>
+    <div class="sign-in-btn">
+      <button type="submit" class="primary-btn"><p>Вход</p></button>
+      <div>
+        <div><p>Впервые на сайте? <a (click)="openSignUp()" class="sign-up-link">Зарегистрируйтесь</a></p></div>
+      </div>
+    </div>
+  </form>
+  <div class="modal-social">
+    <p>Вход через социальные сети</p>
+    <div>
+      <img src="assets/img/facebook.png" alt="facebook" (click)="signInSocial('facebook')">
+      <img src="assets/img/vk.png" alt="vk" (click)="signInSocial('vkontakte')">
+      <img src="assets/img/google.png" alt="google" (click)="signInSocial('google')">
+    </div>
+  </div>
+</div>

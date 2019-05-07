@@ -1,0 +1,35 @@
+<div class="header-container">
+  <div class="svg-controls menu-icon" (click)="toggleMenu()"><svg-icon [applyCss]="true" src="assets/img/menu-icon.svg"></svg-icon></div>
+  <div class="phone-number">
+    <p><a href="mailto:info@jbandflowers.ru">info@jbandflowers.ru</a></p>
+  </div>
+  <div class="logo">
+    <a routerLink="/"><img src="assets/img/logo.svg" alt="logo"></a>
+  </div>
+  <div class="header-controls">
+    <div class="svg-controls user-icon" (click)="openSignIn()" [ngClass]="{'active': isUserLoggedIn}"><svg-icon [applyCss]="true" src="assets/img/user-icon.svg"></svg-icon></div>
+    <div class="svg-controls favourite-icon" (click)="openFavourite()">
+      <div class="items-in-favourite" *ngIf="favouriteItemsCounter">{{ favouriteItemsCounter }}</div>
+      <svg-icon [applyCss]="true" src="assets/img/favourite-icon.svg"></svg-icon>
+    </div>
+    <div class="svg-controls basket-icon" (click)="openBasket()">
+      <div class="items-in-basket" *ngIf="basketItemsCounter">{{ basketItemsCounter }}</div>
+      <svg-icon [applyCss]="true" src="assets/img/basket-icon.svg"></svg-icon>
+    </div>
+  </div>
+  <div class="nav-bar" *ngIf="isOpen" [@enterAnimation] [@.disabled]="!isMobile" [ngClass]="{'mobile': isMobile}">
+    <div class="svg-controls close-mobile-menu" (click)="toggleMenu()"><svg-icon [applyCss]="true" src="assets/img/close.svg"></svg-icon></div>
+    <nav>
+      <div class="nav-item"><a routerLink="/" (click)="toggleMenu()">Каталог</a></div>
+      <div class="nav-item"><a (click)="toggleMenu(); goTo($event)">Покупателям</a></div>
+      <div class="nav-item"><a (click)="toggleMenu(); goTo($event)">Партнерам</a></div>
+      <div class="nav-item"><a (click)="toggleMenu(); goTo($event)">Документы</a></div>
+      <div class="nav-item"><a (click)="toggleMenu(); goTo($event)">Помощь</a></div>
+    </nav>    
+    <div class="social">
+        <a href="#"><img src="assets/img/facebook.png" alt="facebook"></a>
+        <a href="#"><img src="assets/img/vk.png" alt="vk"></a>
+        <a href="#"><img src="assets/img/instagram.png" alt="instagram"></a>
+      </div>
+  </div>
+</div>

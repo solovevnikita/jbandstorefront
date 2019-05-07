@@ -1,0 +1,39 @@
+$main-color: rgb(219, 80, 66);
+.send-review-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 40px;
+  .rating {
+    display: flex;
+    margin-bottom: 20px;
+    p { 
+      font-size: 14px;
+      margin-top: 4px;
+      margin-left: 20px;
+      &.selected-rating-text { 
+        color: $main-color;
+        font-weight: 500;
+      }
+    }
+  }
+  label {
+    font-family: 'Calibri', sans-serif;
+    font-size: 24px;
+  }
+  .review-text{
+    max-width: 580px;
+    height: 190px;
+    margin: 20px 0 40px;
+    textarea { height: 100%; }
+  }
+  .review-send {     
+    font-family: 'Calibri', sans-serif;
+    font-size: 24px;
+  }
+}
+@media (max-width: 768px) {
+  .main-container { padding: 0 20px; }
+}
+@media (max-width: 425px) {
+  .primary-btn { max-width: 100%; }
+}

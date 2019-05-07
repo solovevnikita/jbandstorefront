@@ -1,0 +1,79 @@
+.order-info-container {  
+  .errors { margin-top: 0; }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 0.7fr 0.3fr;
+  grid-template-areas: 'sender recipient' 
+                       'comment comment' 
+                       'block-btn block-btn';
+  grid-column-gap: 50px;
+  p {
+  font-family: 'Calibri', sans-serif;
+  font-size: 24px;
+  margin: 20px 0 10px;
+  }
+  .sender { 
+    grid-area: sender;
+    .date {
+      .inputs {
+        display: flex;
+        input:first-child { 
+          margin-right: 20px;
+          min-width: 140px;
+        }
+        input { 
+          margin-top: 0;
+          max-width: 215px;
+        }
+      }
+    }
+    .address { max-width: 380px; }
+    .sender-сontact-details { max-width: 280px; }
+  }
+  .recipient { 
+    grid-area: recipient;
+    justify-self: end;
+    .recipient-contact-details { max-width: 280px; }
+  }
+  .comment { grid-area: comment; }
+  .block-btn { 
+    grid-area: block-btn;
+    display: flex;
+    justify-content: space-between;
+  }
+  .primary-input:last-child { margin-top: 20px; }
+  .sms-notice { margin: 40px 0 10px; }
+  .other-details { margin-top: 20px; }
+  .other-details, .sms-notice {
+    font-size: 14px;
+    label:before { margin-top: -4px; }
+  }
+  .comment {
+    height: 220px;
+    textarea { height: 120px; }
+  }
+}
+.order-send {
+  p:not(.order-number) { margin-top: 20px; }
+}
+@media (max-width: 768px) {
+  .main-container { padding: 0 20px; }
+  .order-info-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.7fr 0.3fr;
+    grid-template-areas: 'sender'
+                         'recipient'
+                         'comment' 
+                         'block-btn';
+    .block-btn {
+      flex-wrap: wrap;
+      justify-content: center;
+      button { margin-top: 20px; }
+    }
+  }
+}
+@media (max-width: 425px) {
+  .primary-input {
+    padding-left: 10px;
+  }
+}

@@ -1,0 +1,8 @@
+<ngb-carousel [showNavigationArrows]="showNavigationArrows" *ngIf="banners" [showNavigationIndicators]="banners?.length > 1">
+  <ng-template ngbSlide *ngFor="let item of banners; let i = index">
+    <div [style.backgroundImage]="'url('+ item.photos[0].fileName2560 +')'" class="carousel-item-container"></div>
+    <div class="carousel-caption">
+      <h1>{{ item.name }}</h1>
+    </div>
+  </ng-template>
+</ngb-carousel>

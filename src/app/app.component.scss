@@ -1,0 +1,8 @@
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  height: 100vh;        
+  main { flex: 1 0 auto; }               
+  footer { flex-shrink: 0; }               
+}

@@ -1,0 +1,119 @@
+$main-color: rgb(219, 80, 66);
+.similar-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.item-details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 60px;
+  h3 {
+    font-family: 'Calibri', sans-serif;
+    font-size: 32px;
+    letter-spacing: -0.34px;
+  }
+  span {
+    color: rgba(155, 155, 155, .65);
+    font-size: 16px;
+  }
+  p {
+    margin: 20px 0;
+    &.price {
+      font-family: 'Calibri', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+  .btn-block {
+    display: flex;
+    justify-content: space-between;     
+    flex-wrap: wrap;
+    button { margin-top: 20px; }
+  }
+  .reviews {
+    margin-top: 40px;
+    h3 {  
+      font-family: 'Calibri', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0px;
+    }
+    .review-item {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid #d8d8d8;
+      &:last-child { border-bottom: 1px solid #d8d8d8; }
+      .review-info {
+        display: flex;
+        p { margin: 0; }
+        .avatar {
+          position: relative;
+          width: 80px;
+          height: 80px;
+          margin-right: 25px;
+          border-radius: 50%;
+          background: rgba(21, 21, 21, .07); 
+          p {
+            position: absolute;
+            font-size: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }   
+        }
+        .name {
+          font-size: 14px;
+          font-weight: 700;
+        }
+        .date { font-size: 14px; }
+      }
+    }    
+    .review-text p { font-size: 14px; }
+  }
+  .item-details
+  {
+    margin-left: 10px;
+  }
+}
+ngb-rating {        
+  margin-top: 5px;
+  outline: none;
+}
+svg-icon {
+  margin-right: 5px;
+  svg { width: 18px; }
+}
+.filled {
+  &:hover path { fill: $main-color; }
+  path { 
+    fill: $main-color;
+    stroke: $main-color;
+  }
+}
+::ng-deep ngx-gallery-thumbnails {
+  .ngx-gallery-thumbnails .ngx-gallery-thumbnail {  
+    height: 80px !important;
+    width: 80px !important;
+    background-size: contain !important;
+  }
+}
+@media (max-width: 1024px) {
+  .main-container { padding: 0 30px; }
+  .item-details-container {
+    .item-about { width: 80%; }
+  }
+}
+@media (max-width: 768px) {
+  .item-details-container {
+    grid-template-columns: 1fr;
+    .gallery {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+@media (max-width: 425px) {
+  .similar-items {
+    .item { margin: 0 0 40px; }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="reviews-container">
+  <h2>Отзывы покупателей</h2>
+  <ngb-carousel [showNavigationIndicators]="showNavigationIndicators">
+    <ng-template ngbSlide *ngFor="let item of reviews">
+      <div class="rating">      
+        <ngb-rating [(rate)]="item.rating" max="5" [readonly]="true">
+          <ng-template let-fill="fill" let-index="index">
+            <div class="rating-item" [class.filled]="fill === 100"></div>
+          </ng-template>
+        </ngb-rating>
+      </div>
+      <p class="review-text">{{ item.reviewText }}</p>
+      <div class="review-author">
+        <img src="{{item.userAvatarPhoto.fileName130}}" alt="avatar">
+        <div>
+          <p>{{ item.userFullName }}</p>
+        </div>
+        <img src="assets/img/facebook.png" class="social" *ngIf="item.userRegisterMethod === 'facebook'">
+        <img src="assets/img/google.png" class="social" *ngIf="item.userRegisterMethod === 'google'">
+        <img src="assets/img/vk.png" class="social" *ngIf="item.userRegisterMethod === 'vkontakte'">
+        <img src="assets/img/instagram.png" class="social" *ngIf="item.userRegisterMethod === 'instagram'">
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

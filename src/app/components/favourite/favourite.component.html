@@ -1,0 +1,31 @@
+<div class="main-container">
+  <h2>Избранное</h2>
+  <div class="favourite-container" *ngIf="items?.length">
+    <div class="item" *ngFor="let item of items; let index = index">
+      <div class="item-markers">
+        <div class="item-marker bestseller" *ngIf="item.isHitMark">
+          хит
+        </div>
+        <div class="item-marker sale" *ngIf="item.isDiscount">
+          скидка
+        </div>
+      </div>
+      <div class="item-img" (click)="goToItemDetails(item.productId)" [style.backgroundImage]="'url('+ item.photos[0].fileName640 +')'"></div>
+      <div class="item-text">
+        <p class="item-name">{{ item.name }} ({{ item.pieces }} шт.)</p>
+        <span class="item-article">{{ item.article }}</span>
+      </div>
+      <div class="item-text">
+        <p class="item-price">{{ item.price | number:'1.' | numberFormat }} руб.</p>
+      </div>
+      <div class="block-btn">
+        <button class="primary-btn" (click)="addToBasket(item.productId)">В корзину</button>
+        <button class="default-btn" (click)="removeItem(index, item.productId)">Убрать из избранного</button>
+      </div>
+    </div>
+  </div>
+  <div class="no-items" *ngIf="!items?.length">
+    <p>В настоящий момент у Вас нет избранных товаров</p>
+    <button class="primary-btn" (click)="goToStore()">Продолжить покупки</button>
+  </div>
+</div>

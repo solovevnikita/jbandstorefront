@@ -1,0 +1,20 @@
+<ng-template #content let-modal>
+  <div class="modal-container">
+    <div class="modal-close-btn"> 
+      <button type="button" (click)="modal.dismiss()">&times;</button>
+    </div>
+    <div class="modal-title">
+      <h3>Получить скидку</h3>
+      <p>Подпишиесь на наши каналы в соцсетях, чтобы получить скидку на первый заказ и узнавать об акциях и спец предложениях первыми.</p>
+    </div>
+    <div class="modal-social">
+      <div>
+        <img src="assets/img/facebook.png" alt="facebook">
+        <img src="assets/img/vk.png" alt="vk">
+        <img src="assets/img/instagram.png" alt="instagram">
+      </div>
+      <p (click)="modal.close()">Продолжить без скидки</p>
+    </div>
+  </div>
+</ng-template>
+<button (click)="openSubscribeModal(content)">Открыть модальное окно</button>
